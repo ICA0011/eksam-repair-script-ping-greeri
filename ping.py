@@ -1,15 +1,14 @@
-import socket
 import requests
 
 
 def check_server_status(url):
     """Function for checking server status."""
-    ip = socket.gethostbyname(url)
-    a = requests.get(ip)
-    if a == 200:
+    request_response = requests.head(url)
+    status_code = request_response.status_code
+    if status_code == 200:
         return True
     else:
         return False
 
 
-print(check_server_status("www.google.com"))
+print(check_server_status("https://www.example.com"))
